@@ -16,7 +16,7 @@ Das Projekt wurde im Zuge der Übung und Vorlesung Kontinuierliche Simulation an
 3. Dieses Repository klonen. Dafür muss [git installiert](https://git-scm.com/book/de/v2/Erste-Schritte-Git-installieren) sein.
 
 ```console
-git clone repo
+git clone git@github.com:marcomaiermm/KontinuierlicheSimulationTUWien.git
 ```
 
 4. Docker Container hochfahren
