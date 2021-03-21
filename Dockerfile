@@ -1,4 +1,3 @@
-# Choose your desired base image
 FROM jupyter/scipy-notebook:latest
 
 # name your environment and choose python 3.x version
@@ -24,10 +23,14 @@ RUN $CONDA_DIR/envs/${conda_env}/bin/python -m ipykernel install --user --name=$
     fix-permissions /home/$NB_USER
 
 # any additional pip installs can be added by uncommenting the following line
-# RUN $CONDA_DIR/envs/${conda_env}/bin/pip install
+# RUN $CONDA_DIR/envs/${conda_env}/bin/pip install 
 
 # prepend conda environment to path
 ENV PATH $CONDA_DIR/envs/${conda_env}/bin:$PATH
 
 # if you want this environment to be the default one, uncomment the following line:
 # ENV CONDA_DEFAULT_ENV ${conda_env}
+
+ENV CHOWN_HOME=yes
+ENV CHOWN_HOME_OPTS='-R'
+ENV GRANT_SUDO=yes

@@ -11,7 +11,7 @@ Das Projekt wurde im Zuge der Übung und Vorlesung Kontinuierliche Simulation an
 
 1. Docker installieren: [Windows](https://docs.docker.com/docker-for-windows/install/), [Linux](https://docs.docker.com/engine/install/), [Mac](https://docs.docker.com/docker-for-mac/install/)
 
-2. Empfohlen: Docker-Compose installieren: (Windows und Mac bereits im Client enthalten), [linux](https://docs.docker.com/compose/install/)
+2. Docker-Compose installieren: (Windows und Mac bereits im Client enthalten), [linux](https://docs.docker.com/compose/install/)
 
 3. Dieses Repository klonen. Dafür muss [git installiert](https://git-scm.com/book/de/v2/Erste-Schritte-Git-installieren) sein.
 
@@ -21,17 +21,8 @@ git clone git@github.com:marcomaiermm/KontinuierlicheSimulationTUWien.git
 
 4. Docker Container hochfahren
 
-(Empfohlen) Mit Docker-Compose
-
 ```console
 docker-compose up --build -d
-```
-
-Ohne Docker-Compose:
-
-```console
-docker build -t jupyter-konti .
-docker run -dp 8888:8888 jupyter-konti -v "./notebooks/:/home/jovyan/work" -c "start.sh jupyter lab --LabApp.token=''"
 ```
 
 Der Container sollte nun laufen und unter <http://localhost:8888> erreichbar sein.
@@ -44,24 +35,25 @@ Der Ordner ./notebooks/ ist als "volume" mit den Jupyter Docker Container verbun
 
 ## Konfiguration
 
+Im File .env sind alle Konfigurationsvariablen enthalten.
+
 ### Port
 
 Der Port über den die App erreichbar ist kann natürlich geändert werden.
 
-./docker-compose.yml
+### CONTAINER_NAME
 
-```docker-compose
-ports:
-    - "8888:8888"
-```
+Name des Containers im Compose Stack
 
-Port mapping: Linker Port ist sichtbarer Port außerhalb des Containers. Rechter Port ist der "verbundene" Port, der auf den Linken Port umgeschrieben wird.
-Beispielsweise:
+## COMPOSE_PROJECT_NAME
 
-```docker-compose
-ports:
-    - "10000:8888"
-```
+Name des gesamten Stacks
+
+## IMAGE_NAME
+
+Name des erstellten Images
+
+___
 
 Um die Änderungen wirksam zu machen:
 
@@ -70,9 +62,3 @@ docker-compose down && docker-compose up -d
 ```
 
 Das Notebook ist nun unter <http://localhost:10000> erreichbar.
-
-Ohne Docker-Compose:
-
-```console
-docker run -dp 10000:8888 jupyter-konti -v "./notebooks/:/home/jovyan/work" -c "start.sh jupyter lab --LabApp.token=''"
-```
