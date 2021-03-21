@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  jupyter:
+    container_name: jupyter-matlab-onramp
+    image: "jupyter/scipy-notebook-py39:latest"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: start.sh jupyter lab --LabApp.token=''
+    networks:
+      - jupyter
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks/:/home/jovyan/work
+
+networks:
+  jupyter:
