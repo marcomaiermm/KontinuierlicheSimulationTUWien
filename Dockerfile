@@ -6,6 +6,7 @@ ARG py_ver=3.9
 
 # you can add additional libraries you want conda to install by listing them below the first line and ending with "&& \"
 RUN conda create --quiet --yes -p $CONDA_DIR/envs/$conda_env python=$py_ver ipython ipykernel && \
+    conda install -c conda-forge control && \
     conda clean --all -f -y
 
 # alternatively, you can comment out the lines above and uncomment those below
